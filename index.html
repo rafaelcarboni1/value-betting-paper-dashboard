@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Paper Trading — Tela Inicial</title>
+<style>
+  :root {
+    --bg: #0f1115;
+    --card: #161a22;
+    --text: #e7ecf3;
+    --muted: #8a93a6;
+    --accent: #7fd1ff;
+    --line: #232a36;
+  }
+  body { margin: 0; background: var(--bg); color: var(--text); font-family: -apple-system, "SF Pro Display", "Inter", sans-serif; }
+  header { padding: 28px 32px; border-bottom: 1px solid var(--line); }
+  header h1 { margin: 0 0 4px; font-size: 22px; }
+  header .sub { color: var(--muted); font-size: 13px; }
+  main { padding: 24px 32px; max-width: 1200px; margin: 0 auto; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px; }
+  .card.highlight { border-color: var(--accent); }
+  .card h2 { margin: 0 0 12px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+  .card .big { font-size: 28px; font-weight: 600; }
+  .card .match { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
+  .card .meta { margin-top: 8px; font-size: 12px; color: var(--muted); }
+  table.kv { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 14px; }
+  table.kv th { text-align: left; color: var(--muted); font-weight: 500; width: 130px; padding: 6px 0; }
+  table.kv td { padding: 6px 0; border-top: 1px solid var(--line); }
+  .foot { color: var(--muted); font-size: 12px; margin-top: 24px; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header>
+    <h1>Paper Trading — Tela Inicial</h1>
+    <div class="sub">elo_home_only · home_only · threshold 10% · quarter_kelly cap 1.5%</div>
+  </header>
+  <main>
+    
+        <section class="grid">
+          <div class="card">
+            <h2>Banca</h2>
+            <div class="big">100.00u</div>
+            <div class="meta">política home_only · threshold 10% · cap stake 1.50%</div>
+          </div>
+          <div class="card">
+            <h2>Meta 30 liquidadas</h2>
+            <div class="big">0 / 30</div>
+            <div class="meta">CLV positivo: 0 · CLV médio: —</div>
+          </div>
+          <div class="card">
+            <h2>Apostas liquidadas</h2>
+            <div class="big">0</div>
+            <div class="meta">won: 0 · lost: 0</div>
+          </div>
+          <div class="card highlight">
+            <h2>Aposta aberta</h2>
+            <div class="match">Ponte Preta x Novorizontino</div>
+            <div class="meta">kickoff: 2026-06-22 23:00 UTC</div>
+            <table class="kv">
+              <tr><th>Seleção</th><td>open</td></tr>
+              <tr><th>Odd tomada</th><td>Pinnacle @5.35</td></tr>
+              <tr><th>Value estimado</th><td>49.40%</td></tr>
+              <tr><th>Stake</th><td>1.50u</td></tr>
+              <tr><th>Status</th><td>scheduled</td></tr>
+            </table>
+          </div>
+        </section>
+        <p class="foot">Gerado em 2026-06-22 17:33 UTC. Construção completa do dashboard bloqueada até 15 liquidadas com CLV positivo.</p>
+        
+  </main>
+</body>
+</html>
