@@ -34,14 +34,17 @@ jobs:
         env:
           SUPABASE_PROJECT_REF: ${{ secrets.SUPABASE_PROJECT_REF }}
           SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+        run: python3 scripts/render_paper_dashboard.py
+
+      - name: Cleanup runtime artifacts
         run: |
-          cd ..
-          python3 scripts/render_paper_dashboard.py
+          rm -rf scripts requirements.txt .github
+          ls -la
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: dashboard
+          path: .
 
   deploy:
     needs: build
