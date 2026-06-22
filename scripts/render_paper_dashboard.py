@@ -50,12 +50,31 @@ def _load_env() -> dict:
 
 
 def _fetch_dashboard_row(env: dict) -> dict | None:
+    import socket
+
     ref = env["SUPABASE_PROJECT_REF"]
     pw = env["SUPABASE_DB_PASSWORD"]
-    dsn = (
-        f"host=db.{ref}.supabase.co port=5432 dbname=postgres "
-        f"user=postgres password={pw} sslmode=require"
-    )
+    host = f"db.{ref}.supabase.co"
+    # Tenta resolver via IPv4 primeiro; se não houver, usa o hostname original.
+    ipv4 = None
+    try:
+        addr_info = socket.getaddrinfo(
+            host, 5432, socket.AF_INET, socket.SOCK_STREAM
+        )
+        if addr_info:
+            ipv4 = addr_info[0][4][0]
+    except socket.gaierror:
+        ipv4 = None
+    if ipv4:
+        dsn = (
+            f"host={host} hostaddr={ipv4} port=5432 dbname=postgres "
+            f"user=postgres password={pw} sslmode=require"
+        )
+    else:
+        dsn = (
+            f"host={host} port=5432 dbname=postgres "
+            f"user=postgres password={pw} sslmode=require"
+        )
     conn = psycopg2.connect(dsn)
     cur = conn.cursor()
     cur.execute(
